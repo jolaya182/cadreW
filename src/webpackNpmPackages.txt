@@ -1,0 +1,8 @@
+
+npm i --save-dev "@babel/core" "@babel/plugin-proposal-class-properties"    "@babel/plugin-proposal-export-namespace-from"    "@babel/plugin-proposal-throw-expressions"    "@babel/plugin-syntax-dynamic-import"    "@babel/plugin-transform-async-to-generator"    "@babel/polyfill"    "@babel/preset-env"    "@babel/preset-react"    "babel-loader"    "copy-webpack-plugin"    "css-loader"    "eslint"    "eslint-config-airbnb"  "eslint-config-prettier"  "eslint-plugin-import"    "eslint-plugin-jsx-a11y"    "eslint-plugin-react"    "eslint-plugin-react-hooks" "eslint-plugin-prettier"  "graphql"  "husky" "jest"  "node-sass"  "prettier"  "pretty-quick" "puppeteer" "react-redux"    "redux"    "redux-devtools"    "redux-persist"    "sass-loader"    "style-loader"   "webpack-cli"    "webpack-dev-server"
+
+npm i --save-prod babel-eslint body-parser bootstrap express file-loader html-webpack-plugin jsonwebtoken mini-css-extract-plugin nodemon optimize-css-assets-webpack-plugin prop-types react react-dom react-router-dom reactstrap redux-thunk uglifyjs-webpack-plugin uglify-js url-loader webpack webpack-merge webpack-visualizer-plugin
+
+//databases
+//sequalize
+npm i --save-dev sequelize pg pg-hstore mysql2

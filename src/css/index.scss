@@ -1,0 +1,113 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+$main-font: sans-serif;
+//html, body, #app, #app>div{
+// height:100%;
+//}
+
+body {
+  font-family: $main-font;
+  font-size: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+header {
+  font-family: $main-font;
+  font-size: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+div.page {
+  display: flex;
+  height: 100%;
+}
+
+div.whoops404 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: darkred;
+  color: ghostwhite;
+  font: size 1.5em;
+
+  a {
+    color: white;
+    text-decoration: underline;
+    margin: 1 em;
+    &:hover {
+      color: yellow;
+      text-decoration: none;
+    }
+  }
+}
+
+// myFurtureApp furtureApp
+section.myFurtureApp,
+section.furtureApp {
+  font-size: 3em;
+  color: slategray;
+  h1 {
+    font-size: 3em;
+  }
+}
+
+nav.mainMenu {
+  display: flex;
+  flex-direction: column;
+  background-color: slategray;
+  color: ghostwhite;
+  // height: 100vh;
+  width: 20%;
+  min-width: 20%;
+  min-height: 100vh;
+  text-align: center;
+  a {
+    color: ghostwhite;
+    padding: 1em;
+    font-size: 1.5em;
+  }
+}
+
+.pic {
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 75%;
+  justify-content: space-between;
+  margin: auto;
+}
