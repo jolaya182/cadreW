@@ -40,6 +40,9 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+#src/keys
+src/jwt
+package-lock.json
 
 # TypeScript v1 declaration files
 typings/
