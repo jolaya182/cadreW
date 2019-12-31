@@ -1,2 +1,2 @@
-const gkey = { t: 'AIzaSyDq18akNaQEQ-aWIKwUuou-62uv88wYUDc' };
+const gkey = { t: '' };
 export default gkey;
