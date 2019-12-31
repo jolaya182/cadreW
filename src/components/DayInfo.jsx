@@ -9,7 +9,10 @@
  */
 import React from 'react';
 
-const DayInfo = () => {
-  return <div>DayInfo data1 data2 data3</div>;
+const DayInfo = props => {
+  const { dayInfo } = props;
+  return (
+    <div>{dayInfo && `${dayInfo.temperature} ${dayInfo.temperatureUnit}`}</div>
+  );
 };
 export default DayInfo;

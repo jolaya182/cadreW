@@ -8,15 +8,16 @@
  * description: component to get users Address
  */
 import React from 'react';
-import MapContainer from './MapContainer';
 
 const Address = props => {
-  const { getText, searchText, googleTextSearch } = props;
+  const { getText, searchText, saveLoc } = props;
   return (
     <div>
       <label>Address </label>
       <input type="text" value={searchText} onChange={getText} />
-      <MapContainer googleTextSearch={googleTextSearch} />
+      <button type="button" onClick={saveLoc}>
+        saveLoc
+      </button>
     </div>
   );
 };

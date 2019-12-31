@@ -11,13 +11,14 @@ import React from 'react';
 import DayInfo from './DayInfo';
 import Picture from './Picture';
 
-const Day = () => {
+const HiDay = props => {
+  const { dayInfo } = props;
   return (
     <div>
-      Day
-      <Picture />
-      <DayInfo />
+      {dayInfo && <div>{`${dayInfo.name} temperature:`}</div>}
+      Hi
+      <DayInfo dayInfo={dayInfo} />
     </div>
   );
 };
-export default Day;
+export default HiDay;

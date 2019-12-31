@@ -18,8 +18,6 @@ import pages from '../css/index.scss';
 
 const App = () => (
   <div>
-    {' '}
-    cool story bro
     <WheatherApp />
   </div>
 );

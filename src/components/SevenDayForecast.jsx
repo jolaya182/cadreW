@@ -10,11 +10,14 @@
 import React from 'react';
 import SevenDayTable from './SevenDayTable';
 
-const SevenDayForecast = () => {
+const SevenDayForecast = props => {
+  const { sevenDayForecastPeriod } = props;
   return (
     <div>
       SevenDayForecast
-      <SevenDayTable />
+      {sevenDayForecastPeriod && (
+        <SevenDayTable sevenDayForecastPeriod={sevenDayForecastPeriod} />
+      )}
     </div>
   );
 };

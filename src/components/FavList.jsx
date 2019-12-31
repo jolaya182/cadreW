@@ -9,13 +9,20 @@
  */
 import React from 'react';
 
-const FavList = () => {
+const FavList = props => {
+  const { favLocs, selectedFavLoc } = props;
   return (
     <label>
-      pick your favorite loc
-      <select defaultValue="defaultValue">
-        <option value="loc 1">loc 1</option>
-        <option value="loc 2">loc 2</option>
+      select fav location
+      <select defaultValue="defaultValue" onChange={selectedFavLoc}>
+        {favLocs &&
+          favLocs.map((address, indx) => {
+            return (
+              <option key={indx} value={`${address}`}>
+                {`${address}`}
+              </option>
+            );
+          })}
       </select>
     </label>
   );
