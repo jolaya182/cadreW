@@ -18,6 +18,7 @@ export class WheatherApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      comp: props.comp,
       url: 'https://api.weather.gov/points/',
       alertUrl: 'https://api.weather.gov/alerts/active/area/',
       initialNoaaUrl: '',
@@ -247,6 +248,7 @@ export class WheatherApp extends React.Component {
       selectedFavLoc
     } = this;
     const {
+      comp,
       searchText,
       googleMapRef,
       todayPeriod,
@@ -265,42 +267,48 @@ export class WheatherApp extends React.Component {
       lng: -122.176
     };
     const mapStyles = {
-      width: '100%',
-      height: '100%'
+      width: '50%',
+      height: '50%'
     };
     const mark = { lat, lng };
     return (
-      <div>
-        WheatherApp
-        <WheatherForm
-          updateSearchText={updateSearchText}
-          searchText={searchText}
-          getText={getText}
-          saveLoc={saveLoc}
-          favLocs={favLocs}
-          selectedFavLoc={selectedFavLoc}
-        />
-        {todayPeriod && (
-          <Today
-            todayPeriod={todayPeriod}
-            alerts={alerts}
-            hourlyForecastPeriod={hourlyForecastPeriod}
+      <div className="row">
+        <div className="row">
+          <WheatherForm
+            updateSearchText={updateSearchText}
+            searchText={searchText}
+            getText={getText}
+            saveLoc={saveLoc}
+            favLocs={favLocs}
+            selectedFavLoc={selectedFavLoc}
           />
-        )}
-        {sevenDayForecastPeriod && (
-          <SevenDayForecast sevenDayForecastPeriod={sevenDayForecastPeriod} />
-        )}
-        <Map
-          google={google}
-          zoom={8}
-          initialCenter={initialCenter}
-          style={mapStyles}
-          onReady={fetchGoogleDefaultPlace}
-          visible
-          ref={googleMapRef}
-        >
-          <Marker position={mark} />
-        </Map>
+          {comp === 'Today' && todayPeriod && (
+            <div className="row">
+              <Today
+                todayPeriod={todayPeriod}
+                alerts={alerts}
+                hourlyForecastPeriod={hourlyForecastPeriod}
+              />
+            </div>
+          )}
+          {comp === 'SevenDays' && sevenDayForecastPeriod && (
+            <SevenDayForecast sevenDayForecastPeriod={sevenDayForecastPeriod} />
+          )}
+        </div>
+
+        <div className="column">
+          <Map
+            google={google}
+            zoom={10}
+            initialCenter={initialCenter}
+            style={mapStyles}
+            onReady={fetchGoogleDefaultPlace}
+            visible
+            ref={googleMapRef}
+          >
+            <Marker position={mark} />
+          </Map>
+        </div>
       </div>
     );
   }

@@ -11,15 +11,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, HashRouter as Router } from 'react-router-dom';
-import WheatherApp from './WheatherApp';
+// import WheatherApp from './WheatherApp';
+import { Whoops404, Today, SevenDays } from '../page';
 
 // eslint-disable-next-line no-unused-vars
 import pages from '../css/index.scss';
 
 const App = () => (
-  <div>
-    <WheatherApp />
-  </div>
+  <Router>
+    <Switch>
+      <Route path="/" exact component={Today} />
+      <Route path="/SevenDays" component={SevenDays} />
+      <Route component={Whoops404} />
+    </Switch>
+  </Router>
 );
 
 App.PropType = {

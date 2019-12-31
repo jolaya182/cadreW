@@ -104,6 +104,24 @@ nav.mainMenu {
   }
 }
 
+div.day {
+  display: flex;
+  flex-wrap:wrap;
+  flex-direction: column;
+  background-color: slategray;
+  color: ghostwhite;
+  // height: 100vh;
+  width: 20%;
+  min-width: 20%;
+  min-height: 100vh;
+  text-align: center;
+  a {
+    color: ghostwhite;
+    padding: 1em;
+    font-size: 1.5em;
+  }
+}
+
 .pic {
   flex-direction: column;
   flex-wrap: wrap;
