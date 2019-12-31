@@ -273,7 +273,7 @@ export class WheatherApp extends React.Component {
     const mark = { lat, lng };
     return (
       <div className="row">
-        <div className="row">
+        <div className="column">
           <WheatherForm
             updateSearchText={updateSearchText}
             searchText={searchText}
@@ -283,7 +283,7 @@ export class WheatherApp extends React.Component {
             selectedFavLoc={selectedFavLoc}
           />
           {comp === 'Today' && todayPeriod && (
-            <div className="row">
+            <div className="row ">
               <Today
                 todayPeriod={todayPeriod}
                 alerts={alerts}
@@ -296,7 +296,7 @@ export class WheatherApp extends React.Component {
           )}
         </div>
 
-        <div className="column">
+        <div className="columnGoogle">
           <Map
             google={google}
             zoom={10}

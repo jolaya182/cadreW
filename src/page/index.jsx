@@ -38,9 +38,6 @@ export const Today = () => (
 
 export const SevenDays = () => (
   <PageTemplate>
-    <section>
-      <h1>7 days</h1>
-    </section>
     <WheatherApp comp="SevenDays" />
   </PageTemplate>
 );
