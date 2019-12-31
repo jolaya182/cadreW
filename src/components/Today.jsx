@@ -20,7 +20,7 @@ const Today = props => {
   };
 
   return (
-    <div>
+    <div className=" column today">
       Today
       {todayPeriod.hi && <HiDay dayInfo={todayPeriod.hi} />}
       {todayPeriod.low && <LowDay dayInfo={todayPeriod.low} />}

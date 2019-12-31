@@ -2,8 +2,16 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 50%;
+  // width: 20%;
 }
+
+.daysCol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 400px;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -134,4 +142,29 @@ div.day {
   width: 75%;
   justify-content: space-between;
   margin: auto;
+}
+
+.form{
+  background-color: slategray;
+  color:ghostwhite;
+  padding: 1em;
+  // margin: auto;
+  // width:20%;
+
+  // justify-content: center;
+  // text-align: center;
+
+}
+
+.bluish{
+  background-color: #907080 ;
+  min-height: 100vh;
+  min-width: 20%;
+  max-width: 100%;
+}
+
+.today{
+  // min-width: 20%;
+  // max-width: 50%;
+  text-align: center;
 }

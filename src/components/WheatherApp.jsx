@@ -49,10 +49,23 @@ export class WheatherApp extends React.Component {
     if (sessionStorage.getItem('wheatherAppLoc')) {
       this.setState({
         favLocs: sessionStorage.getItem('wheatherAppLoc').split(','),
-        favLocTable: JSON.parse(sessionStorage.getItem('wheatherAppLocTable'))
+        favLocTable: this.createSet(
+          this.createSet(
+            sessionStorage.getItem('wheatherAppLocTable').split(',')
+          )
+        )
       });
     }
   }
+
+  createSet = stringedJson => {
+    console.log('stringedJson', stringedJson);
+    const newSet = new Set();
+    stringedJson.forEach(el => {
+      newSet.add(el);
+    });
+    return newSet;
+  };
 
   getNoaaInitRequest = json => {
     // console.log('getNoaaInitRequest', json);
@@ -235,8 +248,16 @@ export class WheatherApp extends React.Component {
     sessionStorage.setItem('wheatherAppLoc', newFavLocs);
     sessionStorage.setItem(
       'wheatherAppLocTable',
-      JSON.stringify(newFavLocTable)
+      this.convertToArray(newFavLocTable)
     );
+  };
+
+  convertToArray = st => {
+    const retArry = [];
+    for (const item of st) {
+      retArry.push(item);
+    }
+    return retArry;
   };
 
   render() {
@@ -267,13 +288,13 @@ export class WheatherApp extends React.Component {
       lng: -122.176
     };
     const mapStyles = {
-      width: '50%',
-      height: '50%'
+      width: '80%',
+      height: '100%'
     };
     const mark = { lat, lng };
     return (
       <div className="row">
-        <div className="column">
+        <div className="daysCol bluish">
           <WheatherForm
             updateSearchText={updateSearchText}
             searchText={searchText}

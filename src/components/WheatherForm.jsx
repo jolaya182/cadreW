@@ -10,6 +10,7 @@
 import React from 'react';
 import FavList from './FavList';
 import Address from './Address';
+import pages from '../css/index.scss';
 
 const WheatherForm = props => {
   const {
@@ -20,15 +21,10 @@ const WheatherForm = props => {
     favLocs,
     selectedFavLoc
   } = props;
-  // console.log(
-  //   'searchTExt: ',
-  //   searchText,
-  //   ' googleTextSearch: ',
-  //   googleTextSearch
-  // );
+
   return (
     <div>
-      <form onSubmit={updateSearchText}>
+      <form className="form" onSubmit={updateSearchText}>
         <Address searchText={searchText} getText={getText} saveLoc={saveLoc} />
         <FavList favLocs={favLocs} selectedFavLoc={selectedFavLoc} />
         <input type="submit" value="submit" />
