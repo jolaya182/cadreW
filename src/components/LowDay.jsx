@@ -15,7 +15,6 @@ const LowDay = props => {
   const { dayInfo } = props;
   return (
     <div>
-      Low
       {/* <Picture /> */}
       <DayInfo dayInfo={dayInfo} />
     </div>

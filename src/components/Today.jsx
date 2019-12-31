@@ -8,11 +8,20 @@
  * description: component to get users Today
  */
 import React from 'react';
-import HiDay from './HiDay';
-import LowDay from './LowDay';
+import HighLowRow from './HighLowRow';
+import Row from './Row';
+import HourTempRow from './HourTempRow';
+import HourTempRowHeader from './HourTempRowHeader';
+import Alert from './Alert';
 
 const Today = props => {
-  const { todayPeriod, alerts, hourlyForecastPeriod } = props;
+  const {
+    todayPeriod,
+    alerts,
+    hourlyForecastPeriod,
+    showHeadline,
+    showingHeadline
+  } = props;
   const options = {
     hour: 'numeric',
     minute: 'numeric',
@@ -20,22 +29,27 @@ const Today = props => {
   };
 
   return (
-    <div className=" column today">
-      Today
-      {todayPeriod.hi && <HiDay dayInfo={todayPeriod.hi} />}
-      {todayPeriod.low && <LowDay dayInfo={todayPeriod.low} />}
+    <div className="  today">
+      {todayPeriod && <div>{`${todayPeriod.hi.name} temperature:`}</div>}
+      <Row />
+      {todayPeriod.hi && todayPeriod.low && (
+        <HighLowRow dayInfo={todayPeriod} />
+      )}
       <div>
-        {`severity alert : ${alerts.severity} Headline: ${alerts.alertHeadline}`}
+        {alerts && (
+          <Alert
+            showHeadline={showHeadline}
+            showingHeadline={showingHeadline}
+            alerts={alerts}
+          />
+        )}
       </div>
+      <HourTempRowHeader />
       {hourlyForecastPeriod &&
-        hourlyForecastPeriod.map((hour, indx) => {
-          const time = new Date(hour.startTime);
+        hourlyForecastPeriod.map((temp, indx) => {
+          const time = new Date(temp.startTime);
           const timeString = time.toLocaleString('en-US', options);
-          return (
-            <div key={indx}>
-              {`${timeString}: ${hour.temperature} ${hour.temperatureUnit}`}
-            </div>
-          );
+          return <HourTempRow key={indx} timeString={timeString} temp={temp} />;
         })}
     </div>
   );

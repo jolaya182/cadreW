@@ -12,6 +12,20 @@
   width: 400px;
 }
 
+.dayColumn{
+  // display: flex;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.dayRow {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  flex: 1;
+  align-items: flex-start;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -163,8 +177,10 @@ div.day {
   max-width: 100%;
 }
 
-.today{
+.todayBox{
   // min-width: 20%;
   // max-width: 50%;
-  text-align: center;
+  // text-align: center;
+  width: 100%;
+  
 }

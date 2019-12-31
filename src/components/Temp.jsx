@@ -1,5 +1,5 @@
 /**
- * title: Day.jsx
+ * title: Temp.jsx
  *
  * date: 12/23/2019
  *
@@ -8,15 +8,12 @@
  * description: component to get users Day
  */
 import React from 'react';
-import DayInfo from './DayInfo';
 import Picture from './Picture';
 
-const HiDay = props => {
-  const { dayInfo } = props;
+const Temp = props => {
+  const { temp } = props;
   return (
-    <div>
-      <DayInfo dayInfo={dayInfo} />
-    </div>
+    <div className="column">{`${temp.temperature} ${temp.temperatureUnit}`}</div>
   );
 };
-export default HiDay;
+export default Temp;

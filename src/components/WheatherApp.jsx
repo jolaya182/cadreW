@@ -36,7 +36,8 @@ export class WheatherApp extends React.Component {
       area: '',
       alerts: { alertHeadline: '', severity: '', description: '' },
       favLocs: [],
-      favLocTable: new Set()
+      favLocTable: new Set(),
+      showingHeadline: true
     };
   }
 
@@ -260,13 +261,20 @@ export class WheatherApp extends React.Component {
     return retArry;
   };
 
+  showHeadline = () => {
+    console.log('showHeadline');
+    const { showingHeadline } = this.state;
+    this.setState({ showingHeadline: !showingHeadline });
+  };
+
   render() {
     const {
       updateSearchText,
       getText,
       fetchGoogleDefaultPlace,
       saveLoc,
-      selectedFavLoc
+      selectedFavLoc,
+      showHeadline
     } = this;
     const {
       comp,
@@ -278,7 +286,8 @@ export class WheatherApp extends React.Component {
       sevenDayForecastPeriod,
       lat,
       lng,
-      favLocs
+      favLocs,
+      showingHeadline
     } = this.state;
     // eslint-disable-next-line react/prop-types
     const { google } = this.props;
@@ -309,6 +318,8 @@ export class WheatherApp extends React.Component {
                 todayPeriod={todayPeriod}
                 alerts={alerts}
                 hourlyForecastPeriod={hourlyForecastPeriod}
+                showHeadline={showHeadline}
+                showingHeadline={showingHeadline}
               />
             </div>
           )}
