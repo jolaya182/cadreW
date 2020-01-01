@@ -12,9 +12,14 @@ import React from 'react';
 const FavList = props => {
   const { favLocs, selectedFavLoc } = props;
   return (
-    <label>
-      select fav location
-      <select defaultValue="defaultValue" onChange={selectedFavLoc}>
+    <div className="row">
+      {/* <div className="column"> */}
+      {/* <label className="column">select fav location</label> */}
+      <select
+        className="column"
+        defaultValue="defaultValue"
+        onChange={selectedFavLoc}
+      >
         {favLocs &&
           favLocs.map((address, indx) => {
             return (
@@ -24,7 +29,8 @@ const FavList = props => {
             );
           })}
       </select>
-    </label>
+      {/* </div> */}
+    </div>
   );
 };
 export default FavList;

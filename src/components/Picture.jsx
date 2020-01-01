@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import proPic from '../pictures/profile.png';
 
 const Picture = ({ picture }) => (
-  <a href="/">
+  <div className="column">
     <img
       className="pic"
       src={picture}
@@ -23,7 +23,7 @@ const Picture = ({ picture }) => (
       }}
       alt="profile"
     />
-  </a>
+  </div>
 );
 Picture.defaultProps = {
   picture: proPic

@@ -27,7 +27,6 @@ const WeatherForm = props => {
       <form className="form" onSubmit={updateSearchText}>
         <Address searchText={searchText} getText={getText} saveLoc={saveLoc} />
         <FavList favLocs={favLocs} selectedFavLoc={selectedFavLoc} />
-        <input type="submit" value="submit" />
       </form>
     </div>
   );
