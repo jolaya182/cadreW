@@ -29,21 +29,21 @@ const Today = props => {
   };
 
   return (
-    <div className="  today">
-      {todayPeriod && <div>{`${todayPeriod.hi.name} temperature:`}</div>}
+    <div className="todayBox">
+      {todayPeriod && (
+        <div className="Todayrow">{`${todayPeriod.hi.name}'s temperature`}</div>
+      )}
       <Row />
       {todayPeriod.hi && todayPeriod.low && (
         <HighLowRow dayInfo={todayPeriod} />
       )}
-      <div>
-        {alerts && (
-          <Alert
-            showHeadline={showHeadline}
-            showingHeadline={showingHeadline}
-            alerts={alerts}
-          />
-        )}
-      </div>
+      {alerts && (
+        <Alert
+          showHeadline={showHeadline}
+          showingHeadline={showingHeadline}
+          alerts={alerts}
+        />
+      )}
       <HourTempRowHeader />
       {hourlyForecastPeriod &&
         hourlyForecastPeriod.map((temp, indx) => {

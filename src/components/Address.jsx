@@ -14,7 +14,12 @@ const Address = props => {
   return (
     <div>
       <label>Address </label>
-      <input type="text" value={searchText} onChange={getText} />
+      <input
+        type="text"
+        value={searchText}
+        onChange={getText}
+        placeholder={searchText}
+      />
       <button type="button" onClick={saveLoc}>
         saveLoc
       </button>

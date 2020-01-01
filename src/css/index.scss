@@ -10,20 +10,17 @@
   flex-direction: column;
   flex-wrap: wrap;
   width: 400px;
+  background-color: slategray;
 }
 
-.dayColumn{
-  // display: flex;
-  // flex-direction: column;
+.dayColumn {
   flex-wrap: wrap;
   width: 100%;
+  justify-content: space-between;
 }
 .dayRow {
   display: flex;
-  flex-direction: row;
-  flex-basis: 100%;
-  flex: 1;
-  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .column {
@@ -38,6 +35,24 @@
   flex-direction: row;
   flex-basis: 100%;
   flex: 1;
+  align-content: center;
+}
+
+.TodayCol {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 5px;
+}
+
+.Todayrow {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  flex: 1;
+  padding: 5px;
+  border: solid 1px black;
 }
 
 $main-font: sans-serif;
@@ -134,7 +149,7 @@ nav.mainMenu {
 
 div.day {
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   flex-direction: column;
   background-color: slategray;
   color: ghostwhite;
@@ -158,29 +173,48 @@ div.day {
   margin: auto;
 }
 
-.form{
+.form {
   background-color: slategray;
-  color:ghostwhite;
+  color: ghostwhite;
   padding: 1em;
+  height: 30px;
   // margin: auto;
   // width:20%;
 
   // justify-content: center;
   // text-align: center;
-
 }
 
-.bluish{
-  background-color: #907080 ;
+.bluish {
   min-height: 100vh;
   min-width: 20%;
   max-width: 100%;
 }
 
-.todayBox{
+.todayBox {
   // min-width: 20%;
   // max-width: 50%;
   // text-align: center;
+  background-color: #907080;
   width: 100%;
-  
+  justify-content: space-between;
+  padding: 5%;
+  border-radius: 10px;
+  border: 1px solid black;
+  color: ghostwhite;
+}
+
+.rowHeader {
+  background-color: slategray;
+  font-weight: bold;
+}
+.alert {
+  cursor: pointer;
+}
+
+.alertHeader {
+  font-weight: bold;
+  &:hover {
+    background-color: slategray;
+  }
 }

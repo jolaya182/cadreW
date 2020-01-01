@@ -13,9 +13,13 @@ import Picture from './Picture';
 const Alert = props => {
   const { alerts, showHeadline, showingHeadline } = props;
   return (
-    <div className="dayRow">
-      <div onClick={showHeadline}>{`severity alert : ${alerts.severity} `}</div>
-      {showingHeadline && <div>{`Headline: ${alerts.alertHeadline} `}</div>}
+    <div className="">
+      <div className="Todayrow alert alertHeader" onClick={showHeadline}>
+        {`Severity Alert : ${alerts.severity} `}
+      </div>
+      {showingHeadline && alerts.severity && (
+        <div className="Todayrow">{`Headline: ${alerts.alertHeadline} `}</div>
+      )}
     </div>
   );
 };

@@ -15,7 +15,7 @@ import Picture from './Picture';
 const HourTempRow = props => {
   const { timeString, temp } = props;
   return (
-    <div className="row">
+    <div className="Todayrow">
       <Hour timeString={timeString} />
       <Temp temp={temp} />
     </div>

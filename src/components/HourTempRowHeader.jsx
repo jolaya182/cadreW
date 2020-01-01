@@ -15,7 +15,7 @@ import Picture from './Picture';
 const HourTempRowHeader = props => {
   const { timeString, temp } = props;
   return (
-    <div className="row">
+    <div className="Todayrow rowHeader">
       <Hour timeString="Time" />
       <Hour timeString="Temperature" />
     </div>

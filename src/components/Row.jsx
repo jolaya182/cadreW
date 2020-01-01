@@ -21,9 +21,9 @@ const Row = props => {
   };
 
   return (
-    <div className="dayRow">
-      <div className="dayColumn"> high</div>
-      <div className="dayColumn"> low</div>
+    <div className="Todayrow rowHeader">
+      <div className="TodayCol"> High</div>
+      <div className="TodayCol"> Low</div>
     </div>
   );
 };

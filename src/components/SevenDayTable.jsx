@@ -17,7 +17,7 @@ const SevenDayTable = props => {
   sDays.fill(-1);
 
   return (
-    <div>
+    <div className="todayBox">
       SevenDayTable
       {sevenDayForecastPeriod &&
         sevenDayForecastPeriod.map((dayObj, ind) => {

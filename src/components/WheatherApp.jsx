@@ -11,7 +11,7 @@ import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import WheatherForm from './WheatherForm';
 import Today from './Today';
-import SevenDayForecast from './SevenDayForecast';
+import SevenDayTable from './SevenDayTable';
 import key from '../keys';
 
 export class WheatherApp extends React.Component {
@@ -37,16 +37,11 @@ export class WheatherApp extends React.Component {
       alerts: { alertHeadline: '', severity: '', description: '' },
       favLocs: [],
       favLocTable: new Set(),
-      showingHeadline: true
+      showingHeadline: false
     };
   }
 
-  // componentDidUpdate() {
-  //   console.log('componentDidUpdate', this.state);
-  // }
-
   componentDidMount() {
-    // console.log('sessionStorage', sessionStorage);
     if (sessionStorage.getItem('wheatherAppLoc')) {
       this.setState({
         favLocs: sessionStorage.getItem('wheatherAppLoc').split(','),
@@ -54,13 +49,22 @@ export class WheatherApp extends React.Component {
           this.createSet(
             sessionStorage.getItem('wheatherAppLocTable').split(',')
           )
-        )
+        ),
+        googleTextSearch: sessionStorage.getItem('googleTextSearch'),
+        searchText: sessionStorage.getItem('googleTextSearch')
       });
+    }
+    if (sessionStorage.getItem('googleTextSearch')) {
+      this.fetchGooglePlace(sessionStorage.getItem('googleTextSearch'));
     }
   }
 
+  componentDidUpdate() {
+    const { googleTextSearch } = this.state;
+    sessionStorage.setItem('googleTextSearch', googleTextSearch);
+  }
+
   createSet = stringedJson => {
-    console.log('stringedJson', stringedJson);
     const newSet = new Set();
     stringedJson.forEach(el => {
       newSet.add(el);
@@ -109,7 +113,7 @@ export class WheatherApp extends React.Component {
     // console.log('getNoaaAreaAlerts', json);
     const alerts = {
       alertHeadline: '',
-      severity: 'none',
+      severity: '',
       description: ''
     };
     if (json.features.length > 0) {
@@ -302,7 +306,7 @@ export class WheatherApp extends React.Component {
     };
     const mark = { lat, lng };
     return (
-      <div className="row">
+      <div className="dayRow">
         <div className="daysCol bluish">
           <WheatherForm
             updateSearchText={updateSearchText}
@@ -324,7 +328,9 @@ export class WheatherApp extends React.Component {
             </div>
           )}
           {comp === 'SevenDays' && sevenDayForecastPeriod && (
-            <SevenDayForecast sevenDayForecastPeriod={sevenDayForecastPeriod} />
+            <div className="row ">
+              <SevenDayTable sevenDayForecastPeriod={sevenDayForecastPeriod} />
+            </div>
           )}
         </div>
 

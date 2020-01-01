@@ -23,7 +23,7 @@ const WheatherForm = props => {
   } = props;
 
   return (
-    <div>
+    <div className="Todayrow">
       <form className="form" onSubmit={updateSearchText}>
         <Address searchText={searchText} getText={getText} saveLoc={saveLoc} />
         <FavList favLocs={favLocs} selectedFavLoc={selectedFavLoc} />

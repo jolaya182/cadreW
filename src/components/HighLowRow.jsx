@@ -21,11 +21,11 @@ const HighLowRow = props => {
   };
 
   return (
-    <div className="dayRow">
-      <div className="dayColumn">
+    <div className="Todayrow">
+      <div className="TodayCol">
         <HiDay dayInfo={dayInfo.hi} />
       </div>
-      <div className="dayColumn">
+      <div className="TodayCol">
         <LowDay dayInfo={dayInfo.low} />
       </div>
     </div>
