@@ -25,7 +25,9 @@ const Address = props => {
           placeholder={searchText}
         />
       </div>
-      <Picture picture={SaveIcon} onClick={saveLoc} />
+      <div className="column" onClick={saveLoc}>
+        <Picture picture={SaveIcon} />
+      </div>
     </div>
   );
 };

@@ -13,8 +13,6 @@ const FavList = props => {
   const { favLocs, selectedFavLoc } = props;
   return (
     <div className="row">
-      {/* <div className="column"> */}
-      {/* <label className="column">select fav location</label> */}
       <select
         className="column"
         defaultValue="defaultValue"
@@ -29,7 +27,6 @@ const FavList = props => {
             );
           })}
       </select>
-      {/* </div> */}
     </div>
   );
 };

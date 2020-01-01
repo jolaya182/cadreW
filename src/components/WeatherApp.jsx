@@ -232,9 +232,9 @@ export class WeatherApp extends React.Component {
     if (!favLocTable.has(googleTextSearch)) {
       favLocTable.add(googleTextSearch);
       const newFavLocTable = new Set(favLocTable);
-      // const newFavLocs = [...favLocs];
+      const newFavLocs = [...favLocs];
       newFavLocs.push(googleTextSearch);
-      console.log('newFavLocs', newFavLocs);
+      // console.log('newFavLocs', newFavLocs);
       this.saveSessionStorage(newFavLocs, newFavLocTable);
       this.setState({ favLocs: newFavLocs, favLocTable: newFavLocTable });
     }
