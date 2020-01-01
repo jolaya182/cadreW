@@ -8,8 +8,8 @@
  * description: component to get users SevenDayTable
  */
 import React from 'react';
-import HiDay from './HiDay';
-import LowDay from './LowDay';
+import DayTempRowHeader from './DayTempRowHeader';
+import DayTempRow from './DayTempRow';
 
 const SevenDayTable = props => {
   const { sevenDayForecastPeriod } = props;
@@ -18,17 +18,12 @@ const SevenDayTable = props => {
 
   return (
     <div className="todayBox">
-      SevenDayTable
+      <div className="Todayrow">7 Day Weather</div>
+      <DayTempRowHeader />
       {sevenDayForecastPeriod &&
-        sevenDayForecastPeriod.map((dayObj, ind) => {
-          const { name, temperature, temperatureUnit } = dayObj;
-          const dayInfo = { name, temperature, temperatureUnit };
-          // console.log('dayObj', dayObj, 'dayInfo', dayInfo);
-          return dayObj.number % 2 === 0 ? (
-            <LowDay dayInfo={dayInfo} key={ind} />
-          ) : (
-            <HiDay dayInfo={dayInfo} key={ind} />
-          );
+        sevenDayForecastPeriod.map((dayInfo, ind) => {
+          // const dayInfo = { name, temperature, temperatureUnit };
+          return <DayTempRow dayInfo={dayInfo} key={ind} />;
         })}
     </div>
   );

@@ -1,5 +1,5 @@
 /**
- * title: WheatherForm.jsx
+ * title: WeatherForm.jsx
  *
  * date: 12/23/2019
  *
@@ -12,7 +12,7 @@ import FavList from './FavList';
 import Address from './Address';
 import pages from '../css/index.scss';
 
-const WheatherForm = props => {
+const WeatherForm = props => {
   const {
     updateSearchText,
     getText,
@@ -32,4 +32,4 @@ const WheatherForm = props => {
     </div>
   );
 };
-export default WheatherForm;
+export default WeatherForm;

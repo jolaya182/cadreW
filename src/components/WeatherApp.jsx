@@ -1,5 +1,5 @@
 /**
- * title: WheatherApp.jsx
+ * title: WeatherApp.jsx
  *
  * date: 12/23/2019
  *
@@ -9,12 +9,12 @@
  */
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import WheatherForm from './WheatherForm';
+import WeatherForm from './WeatherForm';
 import Today from './Today';
 import SevenDayTable from './SevenDayTable';
 import key from '../keys';
 
-export class WheatherApp extends React.Component {
+export class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,12 +42,12 @@ export class WheatherApp extends React.Component {
   }
 
   componentDidMount() {
-    if (sessionStorage.getItem('wheatherAppLoc')) {
+    if (sessionStorage.getItem('WeatherAppLoc')) {
       this.setState({
-        favLocs: sessionStorage.getItem('wheatherAppLoc').split(','),
+        favLocs: sessionStorage.getItem('WeatherAppLoc').split(','),
         favLocTable: this.createSet(
           this.createSet(
-            sessionStorage.getItem('wheatherAppLocTable').split(',')
+            sessionStorage.getItem('WeatherAppLocTable').split(',')
           )
         ),
         googleTextSearch: sessionStorage.getItem('googleTextSearch'),
@@ -92,7 +92,9 @@ export class WheatherApp extends React.Component {
       hi: json.properties.periods[0],
       low: json.properties.periods[1]
     };
-    const sevenDayForecastPeriod = json.properties.periods;
+    const sevenDayForecastPeriod = this.processSevenDayPeriod(
+      json.properties.periods
+    );
     this.setState({ todayPeriod, sevenDayForecastPeriod });
 
     const { forecastHourlyUrl } = this.state;
@@ -226,11 +228,11 @@ export class WheatherApp extends React.Component {
 
   saveLoc = e => {
     const { googleTextSearch, favLocs, favLocTable } = this.state;
-    console.log('favLocs', favLocs);
+    // console.log('favLocs', favLocs);
     if (!favLocTable.has(googleTextSearch)) {
       favLocTable.add(googleTextSearch);
       const newFavLocTable = new Set(favLocTable);
-      const newFavLocs = [...favLocs];
+      // const newFavLocs = [...favLocs];
       newFavLocs.push(googleTextSearch);
       console.log('newFavLocs', newFavLocs);
       this.saveSessionStorage(newFavLocs, newFavLocTable);
@@ -250,9 +252,9 @@ export class WheatherApp extends React.Component {
   };
 
   saveSessionStorage = (newFavLocs, newFavLocTable) => {
-    sessionStorage.setItem('wheatherAppLoc', newFavLocs);
+    sessionStorage.setItem('WeatherAppLoc', newFavLocs);
     sessionStorage.setItem(
-      'wheatherAppLocTable',
+      'WeatherAppLocTable',
       this.convertToArray(newFavLocTable)
     );
   };
@@ -269,6 +271,18 @@ export class WheatherApp extends React.Component {
     console.log('showHeadline');
     const { showingHeadline } = this.state;
     this.setState({ showingHeadline: !showingHeadline });
+  };
+
+  processSevenDayPeriod = period => {
+    const retAry = [];
+    period.forEach((halfDay, ind, ary) => {
+      if (ind === 0) return;
+      if (halfDay.number % 2 === 0) {
+        retAry.push({ low: halfDay, high: ary[ind - 1] });
+      }
+    });
+    // console.log('retAry', retAry);
+    return retAry;
   };
 
   render() {
@@ -307,8 +321,8 @@ export class WheatherApp extends React.Component {
     const mark = { lat, lng };
     return (
       <div className="dayRow">
-        <div className="daysCol bluish">
-          <WheatherForm
+        <div className=" bluish">
+          <WeatherForm
             updateSearchText={updateSearchText}
             searchText={searchText}
             getText={getText}
@@ -316,22 +330,26 @@ export class WheatherApp extends React.Component {
             favLocs={favLocs}
             selectedFavLoc={selectedFavLoc}
           />
-          {comp === 'Today' && todayPeriod && (
-            <div className="row ">
-              <Today
-                todayPeriod={todayPeriod}
-                alerts={alerts}
-                hourlyForecastPeriod={hourlyForecastPeriod}
-                showHeadline={showHeadline}
-                showingHeadline={showingHeadline}
-              />
-            </div>
-          )}
-          {comp === 'SevenDays' && sevenDayForecastPeriod && (
-            <div className="row ">
-              <SevenDayTable sevenDayForecastPeriod={sevenDayForecastPeriod} />
-            </div>
-          )}
+          <div className="column">
+            {comp === 'Today' && todayPeriod && (
+              <div className="row ">
+                <Today
+                  todayPeriod={todayPeriod}
+                  alerts={alerts}
+                  hourlyForecastPeriod={hourlyForecastPeriod}
+                  showHeadline={showHeadline}
+                  showingHeadline={showingHeadline}
+                />
+              </div>
+            )}
+            {comp === 'SevenDays' && sevenDayForecastPeriod && (
+              <div className="row ">
+                <SevenDayTable
+                  sevenDayForecastPeriod={sevenDayForecastPeriod}
+                />
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="columnGoogle">
@@ -354,4 +372,4 @@ export class WheatherApp extends React.Component {
 
 export default GoogleApiWrapper({
   apiKey: key.t
-})(WheatherApp);
+})(WeatherApp);

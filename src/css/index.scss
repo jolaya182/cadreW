@@ -5,22 +5,22 @@
   // width: 20%;
 }
 
-.daysCol {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 400px;
-  background-color: slategray;
-}
+// .daysCol {
+//   display: flex;
+//   flex-direction: column;
+//   flex-wrap: wrap;
+//   width: 100%;
+// }
 
 .dayColumn {
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
 }
 .dayRow {
   display: flex;
   justify-content: space-between;
+  border-left: solid black 1px;
 }
 
 .column {
@@ -185,10 +185,17 @@ div.day {
   // text-align: center;
 }
 
+.TodayRow .form {
+  height: 30px;
+}
+
 .bluish {
+  // display: inline;
   min-height: 100vh;
-  min-width: 20%;
-  max-width: 100%;
+  background-color: slategray;
+  // min-width: 20%;
+  max-width: 400px;
+  // align-items: flex-start;
 }
 
 .todayBox {
@@ -202,6 +209,16 @@ div.day {
   border-radius: 10px;
   border: 1px solid black;
   color: ghostwhite;
+}
+// .daysCol , .todayRow{
+//   display: inline;
+// }
+.row,
+.todayBox {
+  //   display: flex;
+  //   flex-direction: column;
+  //   flex-wrap: wrap;
+  //   width: 100%;
 }
 
 .rowHeader {

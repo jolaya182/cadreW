@@ -11,7 +11,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, HashRouter as Router } from 'react-router-dom';
-// import WheatherApp from './WheatherApp';
+// import WeatherApp from './WeatherApp';
 import { Whoops404, Today, SevenDays } from '../page';
 
 // eslint-disable-next-line no-unused-vars

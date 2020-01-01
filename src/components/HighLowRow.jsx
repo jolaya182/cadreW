@@ -8,25 +8,18 @@
  * description: component to get high and low in row
  */
 import React from 'react';
-import HiDay from './HiDay';
-import LowDay from './LowDay';
+import Temp from './Temp';
 import pages from '../css/index.scss';
 
 const HighLowRow = props => {
-  const { todayPeriod, alerts, hourlyForecastPeriod, dayInfo } = props;
-  const options = {
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true
-  };
-
+  const { todayPeriod } = props;
   return (
     <div className="Todayrow">
       <div className="TodayCol">
-        <HiDay dayInfo={dayInfo.hi} />
+        <Temp temp={todayPeriod.hi} />
       </div>
       <div className="TodayCol">
-        <LowDay dayInfo={dayInfo.low} />
+        <Temp temp={todayPeriod.low} />
       </div>
     </div>
   );

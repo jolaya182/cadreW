@@ -31,11 +31,11 @@ const Today = props => {
   return (
     <div className="todayBox">
       {todayPeriod && (
-        <div className="Todayrow">{`${todayPeriod.hi.name}'s temperature`}</div>
+        <div className="Todayrow">{`${todayPeriod.hi.name}'s Weather`}</div>
       )}
       <Row />
       {todayPeriod.hi && todayPeriod.low && (
-        <HighLowRow dayInfo={todayPeriod} />
+        <HighLowRow todayPeriod={todayPeriod} />
       )}
       {alerts && (
         <Alert

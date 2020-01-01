@@ -12,7 +12,7 @@
 import React, { Children } from 'react';
 import pages from '../css/index.scss';
 import MainMenu from './MainMenu';
-import WheatherApp from '../components/WheatherApp';
+import WeatherApp from '../components/WeatherApp';
 
 export const Whoops404 = () => (
   <div className="whoops404">
@@ -32,12 +32,12 @@ const PageTemplate = ({ children }) => (
 
 export const Today = () => (
   <PageTemplate>
-    <WheatherApp comp="Today" />
+    <WeatherApp comp="Today" />
   </PageTemplate>
 );
 
 export const SevenDays = () => (
   <PageTemplate>
-    <WheatherApp comp="SevenDays" />
+    <WeatherApp comp="SevenDays" />
   </PageTemplate>
 );
