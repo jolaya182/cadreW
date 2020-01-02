@@ -8,10 +8,16 @@
  * description: component to get high and low in row
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Temp from './Temp';
 import Day from './Day';
-import pages from '../css/index.scss';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const HighLowRow = props => {
   const { todayPeriod } = props;
   return (
@@ -29,3 +35,17 @@ const HighLowRow = props => {
   );
 };
 export default HighLowRow;
+
+HighLowRow.propTypes = {
+  todayPeriod: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.object
+    ])
+  )
+};
+HighLowRow.defaultProps = {
+  todayPeriod: null
+};

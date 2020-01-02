@@ -9,10 +9,13 @@
  */
 import React from 'react';
 import DataCell from './DataCell';
-import Picture from './Picture';
 
-const HourTempRowHeader = props => {
-  const { timeString, temp } = props;
+/**
+ *
+ *
+ * @returns jsx component
+ */
+const HourTempRowHeader = () => {
   return (
     <div className="Todayrow rowHeader">
       <DataCell name="Time" />

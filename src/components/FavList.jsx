@@ -8,7 +8,14 @@
  * description: component to get users favorite location
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const FavList = props => {
   const { favLocs, selectedFavLoc } = props;
   return (
@@ -31,3 +38,14 @@ const FavList = props => {
   );
 };
 export default FavList;
+
+FavList.propTypes = {
+  favLocs: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  ),
+  selectedFavLoc: PropTypes.func
+};
+FavList.defaultProps = {
+  favLocs: null,
+  selectedFavLoc: null
+};

@@ -12,6 +12,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import proPic from '../pictures/profile.png';
 
+/**
+ *
+ *
+ * @param {*} { picture }
+ * @returns jsx component
+ */
 const Picture = ({ picture }) => (
   <div className="column">
     <img

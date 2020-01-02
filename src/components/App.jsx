@@ -11,12 +11,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, HashRouter as Router } from 'react-router-dom';
-// import WeatherApp from './WeatherApp';
 import { Whoops404, Today, SevenDays } from '../page';
 
 // eslint-disable-next-line no-unused-vars
 import pages from '../css/index.scss';
 
+/**
+ * main application component
+ *
+ */
 const App = () => (
   <Router>
     <Switch>

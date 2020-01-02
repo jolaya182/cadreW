@@ -5,21 +5,22 @@
  *
  * author: javier olaya
  *
- * description: component to dispaly a row with hour and temperature
+ * description: component to dispaly a name with hour and temperature
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Day from './Day';
 import Temp from './Temp';
-import Picture from './Picture';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const DayTempRow = props => {
-  const {
-    dayInfo
-    // , low
-  } = props;
-  // name, temperature, temperatureUnit
+  const { dayInfo } = props;
   const { high, low } = dayInfo;
-  // console.log('high', high);
   return (
     <div className="Todayrow">
       <Day name={high.name} />
@@ -29,3 +30,12 @@ const DayTempRow = props => {
   );
 };
 export default DayTempRow;
+
+DayTempRow.propTypes = {
+  dayInfo: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  )
+};
+DayTempRow.defaultProps = {
+  dayInfo: null
+};

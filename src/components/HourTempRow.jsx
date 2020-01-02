@@ -8,10 +8,16 @@
  * description: component to dispaly a row with hour and temperature
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Hour from './Hour';
 import Temp from './Temp';
-import Picture from './Picture';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const HourTempRow = props => {
   const { timeString, temp } = props;
   return (
@@ -22,3 +28,14 @@ const HourTempRow = props => {
   );
 };
 export default HourTempRow;
+
+HourTempRow.propTypes = {
+  temp: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool])
+  ),
+  timeString: PropTypes.string
+};
+HourTempRow.defaultProps = {
+  temp: null,
+  timeString: null
+};

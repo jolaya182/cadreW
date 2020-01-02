@@ -14,7 +14,7 @@ module.exports = env =>
   merge([
     {
       entry: ['@babel/polyfill', APP_DIR],
-      resolve: { extensions: ['.js', '.jsx'] },
+      resolve: { extensions: ['.js', '.jsx', 'svg'] },
       module: {
         rules: [
           {

@@ -5,11 +5,17 @@
  *
  * author: javier olaya
  *
- * description: component to get users Day
+ * description: component to display temperature number and unit
  */
 import React from 'react';
-import Picture from './Picture';
+import PropTypes from 'prop-types';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const Temp = props => {
   const { temp } = props;
   return (
@@ -18,10 +24,23 @@ const Temp = props => {
         <div className="row">{`${temp.temperature} ${temp.temperatureUnit}`}</div>
 
         <div className="row">
-          <img className=" column weatherIcon" src={temp.icon} />
+          <img
+            className=" column weatherIcon"
+            src={temp.icon}
+            alt="weatherIcon"
+          />
         </div>
       </div>
     </div>
   );
 };
 export default Temp;
+
+Temp.propTypes = {
+  temp: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool])
+  )
+};
+Temp.defaultProps = {
+  temp: null
+};

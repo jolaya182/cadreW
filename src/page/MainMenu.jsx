@@ -11,7 +11,6 @@
  */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import pages from '../css/index.scss';
 
 const selectedStyle = {
   backgroundColor: 'white',

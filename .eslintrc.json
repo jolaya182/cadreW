@@ -35,7 +35,10 @@
         "react/no-array-index-key": "off",
         "no-console": "off",
         "react/no-unused-state": "off",
-        "no-alert": "off"
+        "no-alert": "off",
+        "no-restricted-globals": "off",
+        "import/no-unresolved": "off",
+        "jsx-a11y/click-events-have-key-events":"off"
 
     }
 }

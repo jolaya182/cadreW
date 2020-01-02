@@ -8,9 +8,16 @@
  * description: component to get users SevenDayTable
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import DayTempRowHeader from './DayTempRowHeader';
 import DayTempRow from './DayTempRow';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const SevenDayTable = props => {
   const { sevenDayForecastPeriod } = props;
   const sDays = new Array(7);
@@ -29,3 +36,12 @@ const SevenDayTable = props => {
   );
 };
 export default SevenDayTable;
+
+SevenDayTable.propTypes = {
+  sevenDayForecastPeriod: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string])
+  )
+};
+SevenDayTable.defaultProps = {
+  sevenDayForecastPeriod: null
+};

@@ -9,11 +9,19 @@
  */
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import PropTypes from 'prop-types';
 import WeatherForm from './WeatherForm';
 import Today from './Today';
 import SevenDayTable from './SevenDayTable';
 import key from '../keys';
 
+/**
+ *
+ *
+ * @export
+ * @class WeatherApp
+ * @extends {React.Component}
+ */
 export class WeatherApp extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +40,7 @@ export class WeatherApp extends React.Component {
       forecastHourlyUrl: '',
       todayPeriod: '',
       sevenDayForecastPeriod: null,
-      hourlyForecastPeriod: '',
+      hourlyForecastPeriod: null,
       area: '',
       alerts: { alertHeadline: '', severity: '', description: '' },
       favLocs: [],
@@ -41,6 +49,12 @@ export class WeatherApp extends React.Component {
     };
   }
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   componentDidMount() {
     if (sessionStorage.getItem('WeatherAppLoc')) {
       this.setState({
@@ -59,11 +73,23 @@ export class WeatherApp extends React.Component {
     }
   }
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   componentDidUpdate() {
     const { googleTextSearch } = this.state;
     sessionStorage.setItem('googleTextSearch', googleTextSearch);
   }
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   createSet = stringedJson => {
     const newSet = new Set();
     stringedJson.forEach(el => {
@@ -72,11 +98,15 @@ export class WeatherApp extends React.Component {
     return newSet;
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   getNoaaInitRequest = json => {
-    // console.log('getNoaaInitRequest', json);
     const { forecast, forecastHourly } = json.properties;
     const area = json.properties.relativeLocation.properties.state;
-    // console.log('area', area);
     this.setState({
       forecastUrl: forecast,
       forecastHourlyUrl: forecastHourly,
@@ -86,8 +116,13 @@ export class WeatherApp extends React.Component {
     this.fetchMethod(forecastUrl, this.getNoaaTodayForecast);
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   getNoaaTodayForecast = json => {
-    // console.log('getNoaaTodayForecast', json);
     const todayPeriod = {
       hi: json.properties.periods[0],
       low: json.properties.periods[1]
@@ -101,18 +136,27 @@ export class WeatherApp extends React.Component {
     this.fetchMethod(forecastHourlyUrl, this.getNoaaTodayHourlyForecast);
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   getNoaaTodayHourlyForecast = json => {
-    // console.log('getNoaaTodayHourlyForecast', json);
     const hourlyForecastPeriod = json.properties.periods.slice(0, 24);
-    // console.log('hourlyForecastPeriod', hourlyForecastPeriod);
     this.setState({ hourlyForecastPeriod });
 
     const { alertUrl, area } = this.state;
     this.fetchMethod(alertUrl + area, this.getNoaaAreaAlerts);
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   getNoaaAreaAlerts = json => {
-    // console.log('getNoaaAreaAlerts', json);
     const alerts = {
       alertHeadline: '',
       severity: '',
@@ -126,6 +170,12 @@ export class WeatherApp extends React.Component {
     this.setState({ alerts });
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   fetchMethod = (url, callback) => {
     const options = {
       method: 'GET'
@@ -142,8 +192,7 @@ export class WeatherApp extends React.Component {
         json => {
           if (json.status === 404)
             return this.errorMes('fetch return', json.status);
-          // console.log('success', json);
-          callback(json);
+          return callback(json);
         },
         error => this.errorMes('error from ', error)
       );
@@ -153,46 +202,41 @@ export class WeatherApp extends React.Component {
     return console.log(mes, error);
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   fetchGoogleDefaultPlace = (mapProps, map) => {
     const { google } = mapProps;
     const { googleTextSearch } = this.state;
-    // const { googleTextSearch } = this.state;
-    // console.log('map in map', map);
-    // console.log('state.googleMapRef', this.googleMapRef);
 
     const service = new google.maps.places.PlacesService(map);
-    // service.listeners.zoom_changed.h.zoom = 12
-    //  console.log("service", service);
     const request = {
-      // query: '433 robins st, roselle, new jersey 07203',
       query: googleTextSearch,
       fields: ['name', 'geometry']
     };
     service.findPlaceFromQuery(request, function(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        // console.log('results', results[0].geometry.location);
-
         map.setCenter(results[0].geometry.location);
-        // console.log('findplacef', mapProps);
       }
     });
-    // console.log('service', service);
-    // return service;
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   fetchGooglePlace = googleTextSearch => {
-    // console.log('fetchGooglePlace->googleTextSearch', googleTextSearch);
     const { google } = this.props;
-    // const { googleTextSearch } = this.state;
+    // eslint-disable-next-line react/destructuring-assignment
     const { map } = this.state.googleMapRef.current;
-    // console.log('map in map', map);
-    // console.log('state.googleMapRef', this.googleMapRef);
-
-    // this.setState({ googleMapRef: map, mapProps });
 
     const service = new google.maps.places.PlacesService(map);
     const request = {
-      // query: '433 robins st, roselle, new jersey 07203',
       query: googleTextSearch,
       fields: ['name', 'geometry']
     };
@@ -200,50 +244,66 @@ export class WeatherApp extends React.Component {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         const lat = results[0].geometry.location.lat();
         const lng = results[0].geometry.location.lng();
-        // console.log('results', results[0].geometry.location);
-        // console.log('results lat', lat);
-        // console.log('results lng', lng);
 
         map.setCenter(results[0].geometry.location);
-        const newUrl = `${this.state.url + lat},${lng}`;
-        // console.log('newUrl', newUrl);
+        const { url } = this.state;
+        const newUrl = `${url + lat},${lng}`;
         this.setState({ lat, lng, initialNoaaUrl: newUrl, googleTextSearch });
         this.fetchMethod(newUrl, this.getNoaaInitRequest);
       }
     });
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   updateSearchText = e => {
     e.preventDefault();
-    // console.log('target', e.target);
     if (!this.setState.onEnter) this.setState({ onEnter: true });
     const { searchText } = this.state;
     this.fetchGooglePlace(searchText);
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   getText = e => {
-    // console.log('e.target.value', e.target.value);
     this.setState({ searchText: e.target.value, onEnter: null });
   };
 
-  saveLoc = e => {
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
+  saveLoc = () => {
     const { googleTextSearch, favLocs, favLocTable } = this.state;
-    // console.log('favLocs', favLocs);
     if (!favLocTable.has(googleTextSearch)) {
       favLocTable.add(googleTextSearch);
       const newFavLocTable = new Set(favLocTable);
       const newFavLocs = [...favLocs];
       newFavLocs.push(googleTextSearch);
-      // console.log('newFavLocs', newFavLocs);
       this.saveSessionStorage(newFavLocs, newFavLocTable);
       this.setState({ favLocs: newFavLocs, favLocTable: newFavLocTable });
     }
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   selectedFavLoc = e => {
     e.preventDefault();
     const googleTextSearch = e.target.value;
-    // console.log(googleTextSearch);
     this.setState({
       googleTextSearch,
       searchText: googleTextSearch
@@ -251,6 +311,12 @@ export class WeatherApp extends React.Component {
     this.fetchGooglePlace(googleTextSearch);
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   saveSessionStorage = (newFavLocs, newFavLocTable) => {
     sessionStorage.setItem('WeatherAppLoc', newFavLocs);
     sessionStorage.setItem(
@@ -259,20 +325,38 @@ export class WeatherApp extends React.Component {
     );
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   convertToArray = st => {
     const retArry = [];
+    // eslint-disable-next-line no-restricted-syntax
     for (const item of st) {
       retArry.push(item);
     }
     return retArry;
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   showHeadline = () => {
-    console.log('showHeadline');
     const { showingHeadline } = this.state;
     this.setState({ showingHeadline: !showingHeadline });
   };
 
+  /**
+   *
+   *
+   * @param
+   * @returns
+   */
   processSevenDayPeriod = period => {
     const retAry = [];
     period.forEach((halfDay, ind, ary) => {
@@ -281,10 +365,16 @@ export class WeatherApp extends React.Component {
         retAry.push({ low: halfDay, high: ary[ind - 1] });
       }
     });
-    // console.log('retAry', retAry);
     return retAry;
   };
 
+  /**
+   *
+   *
+   * @returns
+   * @param
+   * @returns
+   */
   render() {
     const {
       updateSearchText,
@@ -382,3 +472,14 @@ export class WeatherApp extends React.Component {
 export default GoogleApiWrapper({
   apiKey: key.t
 })(WeatherApp);
+
+WeatherApp.propTypes = {
+  children: PropTypes.element,
+  google: PropTypes.objectOf(PropTypes.object),
+  comp: PropTypes.string
+};
+WeatherApp.defaultProps = {
+  children: null,
+  google: null,
+  comp: null
+};

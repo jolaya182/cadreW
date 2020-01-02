@@ -8,10 +8,16 @@
  * description: component to hold all forms
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import FavList from './FavList';
 import Address from './Address';
-import pages from '../css/index.scss';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const WeatherForm = props => {
   const {
     updateSearchText,
@@ -32,3 +38,21 @@ const WeatherForm = props => {
   );
 };
 export default WeatherForm;
+
+WeatherForm.propTypes = {
+  updateSearchText: PropTypes.func,
+  getText: PropTypes.func,
+  searchText: PropTypes.string,
+  saveLoc: PropTypes.func,
+  favLocs: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])),
+  selectedFavLoc: PropTypes.func
+};
+
+WeatherForm.defaultProps = {
+  updateSearchText: null,
+  getText: null,
+  searchText: null,
+  saveLoc: null,
+  favLocs: null,
+  selectedFavLoc: null
+};

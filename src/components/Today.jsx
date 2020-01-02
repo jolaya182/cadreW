@@ -8,12 +8,19 @@
  * description: component to get users Today
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import HighLowRow from './HighLowRow';
 import DayTempRowHeader from './DayTempRowHeader';
 import HourTempRow from './HourTempRow';
 import HourTempRowHeader from './HourTempRowHeader';
 import Alert from './Alert';
 
+/**
+ *
+ *
+ * @param {*} props
+ * @returns jsx component
+ */
 const Today = props => {
   const {
     todayPeriod,
@@ -55,3 +62,20 @@ const Today = props => {
   );
 };
 export default Today;
+
+Today.propTypes = {
+  todayPeriod: PropTypes.objectOf(PropTypes.object),
+  alerts: PropTypes.objectOf(PropTypes.string),
+  hourlyForecastPeriod: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.object])
+  ),
+  showHeadline: PropTypes.func,
+  showingHeadline: PropTypes.bool
+};
+Today.defaultProps = {
+  todayPeriod: null,
+  alerts: null,
+  hourlyForecastPeriod: null,
+  showHeadline: null,
+  showingHeadline: null
+};

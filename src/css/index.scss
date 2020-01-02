@@ -49,9 +49,6 @@
 }
 
 $main-font: sans-serif;
-//html, body, #app, #app>div{
-// height:100%;
-//}
 
 body {
   font-family: $main-font;
@@ -113,7 +110,6 @@ div.whoops404 {
   }
 }
 
-// myFurtureApp furtureApp
 section.myFurtureApp,
 section.furtureApp {
   font-size: 3em;
@@ -128,11 +124,7 @@ nav.mainMenu {
   flex-direction: row;
   background-color: slategray;
   color: ghostwhite;
-  // height: 100vh;
-  // width: 20%;
-  // min-width: 20%;
-  // min-height: 100vh;
-  text-align: center;
+   text-align: center;
   a {
     color: ghostwhite;
     padding: 1em;
@@ -146,10 +138,8 @@ div.day {
   flex-direction: column;
   background-color: slategray;
   color: ghostwhite;
-  // height: 100vh;
   width: 20%;
   min-width: 20%;
-  // min-height: 100vh;
   text-align: center;
   a {
     color: ghostwhite;
@@ -167,11 +157,9 @@ div.day {
 }
 
 .weatherIcon {
-  // flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  // justify-content: space-between;
   margin: auto;
 }
 
@@ -180,30 +168,20 @@ div.day {
   color: ghostwhite;
   padding: 1em;
   height: 30px;
-  // margin: auto;
-  // width:20%;
-  // justify-content: center;
-  // text-align: center;
-}
+ }
 
 .TodayRow .form {
   height: 30px;
 }
 
 .bluish {
-  // display: inline;
   min-height: 90vh;
   background-color: slategray;
   max-width: 400px;
-  // min-width: 20%;
-  // align-items: flex-start;
 }
 
 .todayBox {
-  // min-width: 20%;
-  // max-width: 50%;
-  // text-align: center;
-  background-color: #907080;
+   background-color: #907080;
   width: 100%;
   justify-content: space-between;
   padding: 5%;

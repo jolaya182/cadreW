@@ -10,8 +10,12 @@
 import React from 'react';
 import Day from './Day';
 import DataCell from './DataCell';
-import Picture from './Picture';
 
+/**
+ *
+ *
+ * @returns jsx component
+ */
 const DayTempRowHeader = () => {
   return (
     <div className="Todayrow rowHeader">

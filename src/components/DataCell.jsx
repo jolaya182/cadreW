@@ -5,13 +5,20 @@
  *
  * author: javier olaya
  *
- * description: Day component for the hourly temperature
+ * description: Day component for the simple string display in a table
  */
 import React from 'react';
-import Picture from './Picture';
+import PropTypes from 'prop-types';
 
 const DataCell = props => {
   const { name } = props;
   return <div className="column">{`${name} `}</div>;
 };
 export default DataCell;
+
+DataCell.propTypes = {
+  name: PropTypes.string
+};
+DataCell.defaultProps = {
+  name: null
+};
