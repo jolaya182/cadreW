@@ -5,7 +5,7 @@
  *
  * author: javier olaya
  *
- * description: component to hold all forms and day forecast
+ * description: component to hold the search form and day forecast
  */
 import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
@@ -23,6 +23,33 @@ import key from '../keys';
  * @extends {React.Component}
  */
 export class WeatherApp extends React.Component {
+  /**
+   *Creates an instance of WeatherApp.
+   * @param {*} props
+   * @memberof WeatherApp
+   *
+   * @comp string
+   * @url string
+   * @alertUrl string
+   * @initialNoaaUrl string
+   * @searchText string
+   * @onEnter bool
+   * @lat int
+   * @lng int
+   * @googleTextSearch string
+   * @googleMapRef object
+   * @forecastUrl string
+   * @forecastHourlyUrl string
+   * @todayPeriod object
+   * @sevenDayForecastPeriod array
+   * @hourlyForecastPeriod array
+   * @area string
+   * @alerts object
+   * @favLocs array
+   * @favLocTable  Set
+   * @showingHeadline bool
+   *
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +61,7 @@ export class WeatherApp extends React.Component {
       onEnter: null,
       lat: null,
       lng: null,
-      googleTextSearch: '433 robins st, roselle, new jersey 07203',
+      googleTextSearch: '295 Lafayette St floor 5, New York, NY 10012',
       googleMapRef: React.createRef(),
       forecastUrl: '',
       forecastHourlyUrl: '',
@@ -50,7 +77,7 @@ export class WeatherApp extends React.Component {
   }
 
   /**
-   *
+   * checks wheather we have a list of previous searches
    *
    * @param
    * @returns
@@ -74,7 +101,7 @@ export class WeatherApp extends React.Component {
   }
 
   /**
-   *
+   * keep track of the current location being searched
    *
    * @param
    * @returns
@@ -85,10 +112,10 @@ export class WeatherApp extends React.Component {
   }
 
   /**
+   * recreates the set since it was stored as a string in the sessionstorage variable
    *
-   *
-   * @param
-   * @returns
+   * @param string
+   * @returns Set
    */
   createSet = stringedJson => {
     const newSet = new Set();
@@ -99,9 +126,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * initial Request to get the links for hourly and 7 day forecast
    *
-   *
-   * @param
+   * @param object
    * @returns
    */
   getNoaaInitRequest = json => {
@@ -117,9 +144,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fetches hourly forecast
    *
-   *
-   * @param
+   * @param object
    * @returns
    */
   getNoaaTodayForecast = json => {
@@ -137,9 +164,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fetches hourly forecast
    *
-   *
-   * @param
+   * @param object
    * @returns
    */
   getNoaaTodayHourlyForecast = json => {
@@ -151,9 +178,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fetches alert for the current area
    *
-   *
-   * @param
+   * @param object
    * @returns
    */
   getNoaaAreaAlerts = json => {
@@ -171,10 +198,11 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fetches 'get' requests to the url provided and execute callbacks as
+   * part of code reuse
    *
-   *
-   * @param
-   * @returns
+   * @param string, function
+   * @returns object
    */
   fetchMethod = (url, callback) => {
     const options = {
@@ -203,9 +231,11 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fetches google place coordinates and uses 'mapProps.google' property as part of the
+   * google-maps-react library.This function is used only for the 'onReady' Map
+   * component as it is only used once
    *
-   *
-   * @param
+   * @param {*} props
    * @returns
    */
   fetchGoogleDefaultPlace = (mapProps, map) => {
@@ -217,7 +247,7 @@ export class WeatherApp extends React.Component {
       query: googleTextSearch,
       fields: ['name', 'geometry']
     };
-    service.findPlaceFromQuery(request, function(results, status) {
+    service.findPlaceFromQuery(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         map.setCenter(results[0].geometry.location);
       }
@@ -225,9 +255,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fetches the google place coordinate for the current locatin search
    *
-   *
-   * @param
+   * @param string
    * @returns
    */
   fetchGooglePlace = googleTextSearch => {
@@ -255,9 +285,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fires a location search from the forn
    *
-   *
-   * @param
+   * @param event
    * @returns
    */
   updateSearchText = e => {
@@ -268,7 +298,7 @@ export class WeatherApp extends React.Component {
   };
 
   /**
-   *
+   * gets every typed word of the text input from the form
    *
    * @param
    * @returns
@@ -278,7 +308,7 @@ export class WeatherApp extends React.Component {
   };
 
   /**
-   *
+   * saves a the location that was found after clicking on the save icon
    *
    * @param
    * @returns
@@ -296,9 +326,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * fetches saved location and updates the application weather data
    *
-   *
-   * @param
+   * @param event
    * @returns
    */
   selectedFavLoc = e => {
@@ -312,9 +342,9 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   *  updates the local sessionStorage with location searches
    *
-   *
-   * @param
+   * @param Array, Set
    * @returns
    */
   saveSessionStorage = (newFavLocs, newFavLocTable) => {
@@ -326,7 +356,8 @@ export class WeatherApp extends React.Component {
   };
 
   /**
-   *
+   * converts the location 'Set' variable into an array
+   * so that it is storable for the SesssionStorage variable
    *
    * @param
    * @returns
@@ -341,7 +372,7 @@ export class WeatherApp extends React.Component {
   };
 
   /**
-   *
+   * makes the decision to show alerts in the area
    *
    * @param
    * @returns
@@ -352,10 +383,11 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * places each half a day into one object for better
+   * data management
    *
-   *
-   * @param
-   * @returns
+   * @param array
+   * @returns array
    */
   processSevenDayPeriod = period => {
     const retAry = [];
@@ -369,11 +401,10 @@ export class WeatherApp extends React.Component {
   };
 
   /**
+   * display WeatherApp Component
    *
-   *
-   * @returns
    * @param
-   * @returns
+   * @returns jsx component
    */
   render() {
     const {

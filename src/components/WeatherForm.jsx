@@ -5,7 +5,7 @@
  *
  * author: javier olaya
  *
- * description: component to hold all forms
+ * description: component to hold the search form
  */
 import React from 'react';
 import PropTypes from 'prop-types';

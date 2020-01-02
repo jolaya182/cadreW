@@ -5,7 +5,7 @@
  *
  * author: javier olaya
  *
- * description: component to dispaly a row with hour and temperature
+ * description: component to dispaly a row with hour and temperature header
  */
 import React from 'react';
 import DataCell from './DataCell';

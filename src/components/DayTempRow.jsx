@@ -9,7 +9,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Day from './Day';
+import DataCell from './DataCell';
 import Temp from './Temp';
 
 /**
@@ -21,9 +21,10 @@ import Temp from './Temp';
 const DayTempRow = props => {
   const { dayInfo } = props;
   const { high, low } = dayInfo;
+  const { name } = high;
   return (
     <div className="Todayrow">
-      <Day name={high.name} />
+      <DataCell name={name} />
       <Temp temp={high} />
       <Temp temp={low} />
     </div>
@@ -32,9 +33,7 @@ const DayTempRow = props => {
 export default DayTempRow;
 
 DayTempRow.propTypes = {
-  dayInfo: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  )
+  dayInfo: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object]))
 };
 DayTempRow.defaultProps = {
   dayInfo: null

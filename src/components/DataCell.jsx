@@ -5,7 +5,7 @@
  *
  * author: javier olaya
  *
- * description: Day component for the simple string display in a table
+ * description: component for the simple string display in a table
  */
 import React from 'react';
 import PropTypes from 'prop-types';

@@ -5,10 +5,9 @@
  *
  * author: javier olaya
  *
- * description: component to dispaly a row with hour and temperature
+ * description: component to dispaly a row with a day, hour and temperature table header
  */
 import React from 'react';
-import Day from './Day';
 import DataCell from './DataCell';
 
 /**
@@ -19,7 +18,7 @@ import DataCell from './DataCell';
 const DayTempRowHeader = () => {
   return (
     <div className="Todayrow rowHeader">
-      <Day name="Day" />
+      <DataCell name="Day" />
       <DataCell name="High" />
       <DataCell name="Low" />
     </div>

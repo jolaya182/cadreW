@@ -5,7 +5,7 @@
  *
  * author: javier olaya
  *
- * description: component to get users Today
+ * description: component to get users Today temperature
  */
 import React from 'react';
 import PropTypes from 'prop-types';

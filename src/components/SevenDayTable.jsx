@@ -5,7 +5,7 @@
  *
  * author: javier olaya
  *
- * description: component to get users SevenDayTable
+ * description: component to display 7 day temperature
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -39,7 +39,7 @@ export default SevenDayTable;
 
 SevenDayTable.propTypes = {
   sevenDayForecastPeriod: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string])
+    PropTypes.oneOfType([PropTypes.object])
   )
 };
 SevenDayTable.defaultProps = {

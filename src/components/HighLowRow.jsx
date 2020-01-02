@@ -5,13 +5,12 @@
  *
  * author: javier olaya
  *
- * description: component to get high and low in row
+ * description: component to display the day high and low temperature in row
  */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Temp from './Temp';
-import Day from './Day';
-
+import DataCell from './DataCell';
 /**
  *
  *
@@ -23,7 +22,7 @@ const HighLowRow = props => {
   return (
     <div className="Todayrow">
       <div className="TodayCol">
-        <Day name={todayPeriod.hi.name} />
+        <DataCell name={todayPeriod.hi.name} />
       </div>
       <div className="TodayCol">
         <Temp temp={todayPeriod.hi} />
@@ -37,14 +36,7 @@ const HighLowRow = props => {
 export default HighLowRow;
 
 HighLowRow.propTypes = {
-  todayPeriod: PropTypes.objectOf(
-    PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.object
-    ])
-  )
+  todayPeriod: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.object]))
 };
 HighLowRow.defaultProps = {
   todayPeriod: null
