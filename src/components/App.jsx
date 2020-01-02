@@ -21,6 +21,7 @@ const App = () => (
   <Router>
     <Switch>
       <Route path="/" exact component={Today} />
+      <Route path="/Today" exact component={Today} />
       <Route path="/SevenDays" component={SevenDays} />
       <Route component={Whoops404} />
     </Switch>

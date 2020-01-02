@@ -23,21 +23,20 @@ export const Whoops404 = () => (
   </div>
 );
 
-const PageTemplate = ({ children }) => (
+const PageTemplate = ({ children, comp }) => (
   <div className="page">
-    <MainMenu />
-    {children}
+    <WeatherApp comp={comp}>{children}</WeatherApp>
   </div>
 );
 
 export const Today = () => (
-  <PageTemplate>
-    <WeatherApp comp="Today" />
+  <PageTemplate comp="Today">
+    <MainMenu />
   </PageTemplate>
 );
 
 export const SevenDays = () => (
-  <PageTemplate>
-    <WeatherApp comp="SevenDays" />
+  <PageTemplate comp="SevenDays">
+    <MainMenu />
   </PageTemplate>
 );

@@ -9,12 +9,16 @@
  */
 import React from 'react';
 import Temp from './Temp';
+import Day from './Day';
 import pages from '../css/index.scss';
 
 const HighLowRow = props => {
   const { todayPeriod } = props;
   return (
     <div className="Todayrow">
+      <div className="TodayCol">
+        <Day name={todayPeriod.hi.name} />
+      </div>
       <div className="TodayCol">
         <Temp temp={todayPeriod.hi} />
       </div>

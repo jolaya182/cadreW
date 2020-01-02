@@ -13,10 +13,18 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import pages from '../css/index.scss';
 
+const selectedStyle = {
+  backgroundColor: 'white',
+  color: 'slateGray'
+};
 const MainMenu = () => (
   <nav className="mainMenu">
-    <NavLink to="/">[Today]</NavLink>
-    <NavLink to="/SevenDays">[SevenDays]</NavLink>
+    <NavLink className="column" activeStyle={selectedStyle} to="/Today">
+      [Today]
+    </NavLink>
+    <NavLink className="column" activeStyle={selectedStyle} to="/SevenDays">
+      [SevenDays]
+    </NavLink>
   </nav>
 );
 

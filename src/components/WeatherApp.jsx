@@ -307,6 +307,7 @@ export class WeatherApp extends React.Component {
       favLocs,
       showingHeadline
     } = this.state;
+    const { children } = this.props;
     // eslint-disable-next-line react/prop-types
     const { google } = this.props;
 
@@ -315,43 +316,51 @@ export class WeatherApp extends React.Component {
       lng: -122.176
     };
     const mapStyles = {
-      width: '80%',
+      width: '100%',
       height: '100%'
     };
     const mark = { lat, lng };
     return (
-      <div className="dayRow">
-        <div className=" bluish">
-          <WeatherForm
-            updateSearchText={updateSearchText}
-            searchText={searchText}
-            getText={getText}
-            saveLoc={saveLoc}
-            favLocs={favLocs}
-            selectedFavLoc={selectedFavLoc}
-          />
-          <div className="column">
-            {comp === 'Today' && todayPeriod && (
-              <div className="row ">
-                <Today
-                  todayPeriod={todayPeriod}
-                  alerts={alerts}
-                  hourlyForecastPeriod={hourlyForecastPeriod}
-                  showHeadline={showHeadline}
-                  showingHeadline={showingHeadline}
+      <div className="row">
+        <div className="column">
+          {children}
+          <div className="row bluish">
+            <div className="column ">
+              <div>
+                <WeatherForm
+                  updateSearchText={updateSearchText}
+                  searchText={searchText}
+                  getText={getText}
+                  saveLoc={saveLoc}
+                  favLocs={favLocs}
+                  selectedFavLoc={selectedFavLoc}
                 />
+                <div className="row">
+                  <div className="column">
+                    {comp === 'Today' && todayPeriod && (
+                      <div className="row ">
+                        <Today
+                          todayPeriod={todayPeriod}
+                          alerts={alerts}
+                          hourlyForecastPeriod={hourlyForecastPeriod}
+                          showHeadline={showHeadline}
+                          showingHeadline={showingHeadline}
+                        />
+                      </div>
+                    )}
+                    {comp === 'SevenDays' && sevenDayForecastPeriod && (
+                      <div className="row ">
+                        <SevenDayTable
+                          sevenDayForecastPeriod={sevenDayForecastPeriod}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-            )}
-            {comp === 'SevenDays' && sevenDayForecastPeriod && (
-              <div className="row ">
-                <SevenDayTable
-                  sevenDayForecastPeriod={sevenDayForecastPeriod}
-                />
-              </div>
-            )}
+            </div>
           </div>
         </div>
-
         <div className="columnGoogle">
           <Map
             google={google}

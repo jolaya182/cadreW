@@ -9,7 +9,7 @@
  */
 import React from 'react';
 import HighLowRow from './HighLowRow';
-import Row from './Row';
+import DayTempRowHeader from './DayTempRowHeader';
 import HourTempRow from './HourTempRow';
 import HourTempRowHeader from './HourTempRowHeader';
 import Alert from './Alert';
@@ -33,7 +33,7 @@ const Today = props => {
       {todayPeriod && (
         <div className="Todayrow">{`${todayPeriod.hi.name}'s Weather`}</div>
       )}
-      <Row />
+      <DayTempRowHeader />
       {todayPeriod.hi && todayPeriod.low && (
         <HighLowRow todayPeriod={todayPeriod} />
       )}
