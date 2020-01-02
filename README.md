@@ -2,6 +2,8 @@
 
 WeatherApp
 
+<a href="https://imgflip.com/gif/3l0j0e"><img src="https://i.imgflip.com/3l0j0e.gif" title="made at imgflip.com"/></a>
+
 steps:
 
 clone repo: `git clone https://github.com/jolaya182/cadreW.git`
